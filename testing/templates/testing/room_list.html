@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<head>
+
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+</head>
+<body>
+    <header>
+        <nav>
+            <img src="{% static 'logo.png' %}" alt="Логотип" class="logo">
+            <a href="{% url 'room_list' %}">Головна</a>
+            <a href="{% url 'create_booking' %}">Забронювати кімнату</a>
+            <a href="{% url 'show_calendar' %}">Календар</a>
+            <a href="{% url 'my_bookings' %}">Мої бронювання</a>
+            <div id="indicator"></div>
+        </nav>
+    </header>
+    <main>  
+        <p class="main_text">Ласкаво просимо до нашого готелю LABYRINTH, де комфорт і затишок поєднуються з бездоганним сервісом! На нашому сайті ви можете легко забронювати номер, що ідеально відповідатиме вашим потребам, чи то для сімейного відпочинку, романтичної подорожі чи ділової поїздки. Обирайте з широкого вибору стильних і сучасних номерів, насолоджуйтесь зручною системою бронювання та готуйтеся до незабутнього перебування в самому серці гостинності!</p>
+        <ul>
+            {% for room in rooms %}
+            <li>{{ room.name }} - Місткість: {{ room.capacity }} осіб, Ціна: {{ room.price_per_night }} грн/ніч</li>
+            {% endfor %}
+        </ul>
+        <img src="{% static 'hotel.jpg' %}" alt="Готель" class="hotel-image">
+    </main>
+    <footer>
+        <div class="contact-info">
+            <p>Зв'яжіться з нами:</p>
+            <p>Email: info@hotel.com | Телефон: +380 (123) 456-78-90</p>
+        </div>
+        <div class="social-links">
+            <a href="https://facebook.com/hotel" target="_blank">Facebook</a>
+            <a href="https://instagram.com/hotel" target="_blank">Instagram</a>
+            <a href="https://twitter.com/hotel" target="_blank">Twitter</a>
+        </div>
+        <div class="copyright">
+            &copy; 2025 Готель LABYRINTH. Усі права захищено.
+        </div>
+    </footer>
+</body>
+{% endblock %}
